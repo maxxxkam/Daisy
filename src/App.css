@@ -11,9 +11,10 @@
   padding: 0 15px;
 }
 
+
+
 body{
   background-image: url(/public/body-bg.png);
   /* background-size: cover; */
   background-position: center;
-
 }
