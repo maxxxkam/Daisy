@@ -1,0 +1,49 @@
+.wrapper{
+   // display: grid;
+   // grid-template-columns: 2fr 3fr;
+   display: flex;
+   justify-content: center;
+   gap: 40px;
+   margin-top: 40px;
+   @media (max-width:800px) {
+      flex-direction: column;
+   }
+}
+
+.card{
+   img{
+      width: 100%;
+      transition: 0.4s;
+      &:hover{
+         scale: 1.1;
+      }
+   }
+   padding: 40px;
+   border: 3px solid black;
+   border-radius: 15px;
+   display: flex;
+   flex-direction: column;
+   gap: 20px;
+   h1{
+      // font-size: 36px;
+      font-size: clamp(1rem, 0.624rem + 1.63vw, 2.25rem);
+      font-weight: 500;
+      max-width: 500px;
+   }
+   p{
+      // font-size: 23px;
+      font-size: clamp(0.813rem, 0.624rem + 0.81vw, 1.438rem);
+    font-family: "PT Mono", serif;
+   }
+}
+
+.card_1{
+   max-width: 500px;
+   background-color: #e7ccff;
+}
+
+.card_2{
+   max-width: 700px;
+   background-color: #ccf5ff;
+
+}

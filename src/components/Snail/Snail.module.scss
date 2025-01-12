@@ -1,0 +1,63 @@
+.snail{
+   background-color: #d2fba4de;
+   border: 3px solid black;
+   border-radius: 20px;
+   margin-top: 80px;
+   padding: 40px;
+}
+
+.wrapper{
+   // display: grid;
+   // grid-template-columns: 1fr 3fr;
+   display: flex;
+   justify-content: space-between;
+   gap: 20px;
+   padding: 60px;
+   @media (max-width:770px) {
+      flex-direction: column;
+      img{
+         max-width: 120px;
+      }
+      padding: 20px;
+   }
+}
+
+.card{
+   h2{
+      // font-size: 37px;
+      font-size: clamp(1rem, 0.605rem + 1.71vw, 2.313rem);
+      font-weight: 500;
+   }
+   
+}
+
+
+.card_1{
+   max-width: 280px;
+   img{
+      width: 100%;
+   }
+
+   span{
+      border: 3px solid black;
+      border-radius: 60%;
+      padding: 8px;
+      font-weight: 600;
+   }
+}
+
+.card_2{
+   max-width: 720px;
+   display: flex;
+   gap: 30px;
+   flex-direction: column;
+}
+
+.first_span{
+   text-decoration: 4px underline black;
+}
+
+.sec_span{
+   background-color: #eeff8a;
+   text-decoration: none;
+}
