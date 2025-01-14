@@ -1,0 +1,145 @@
+footer{
+   background-color: #000;
+   margin-top: -15px;
+}
+
+.wrapper{
+   display: flex;
+   justify-content: space-between;
+   padding: 40px;
+   @media (max-width:760px) {
+      flex-direction: column;
+      gap: 30px;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+   }
+}
+
+.card1{
+   display: flex;
+   flex-direction: column;
+   gap: 15px;
+   button{
+      margin-top: auto;
+      padding: 10px;
+      font-size: 12px;
+   }
+   img{
+      max-width: 45px;
+      width: 100%;
+   }
+}
+
+.card2{
+   a{
+      color: #fff;
+      font-weight: 500;
+   }
+}
+
+.card3{
+   img{
+      max-width: 45px;
+      width: 100%;
+   }
+   
+   a{
+      color: #fff;
+
+   }
+
+   display: flex;
+   flex-direction: column;
+   gap: 20px;
+
+}
+
+.modalOverlay {
+   position: fixed;
+   top: 0;
+   left: 0;
+   width: 100%;
+   height: 100%;
+   background: rgba(0, 0, 0, 0.5);
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   z-index: 1000;
+
+ }
+ 
+ .modal {
+   background: #f4f3e8;
+   padding: 20px;
+   border-radius: 8px;
+   position: relative;
+   width: 90%;
+   max-width: 500px;
+   gap: 20px;
+   display: flex;
+   padding: 20px;
+   flex-direction: column;
+   h2{
+      font-weight: 500;
+   }
+ }
+ 
+ .closeButton {
+   position: absolute;
+   top: 10px;
+   right: 10px;
+   background: none;
+   border: none;
+   font-size: 1.5rem;
+   cursor: pointer;
+ }
+ 
+
+ .cookieSection{
+   display: flex;
+   flex-direction: column;
+   gap: 20px;
+ }
+
+ .cookieCategory{
+   display: flex;
+   span{
+      font-size: 12px;
+      font-family: "PT Mono", serif;
+   }
+ }
+
+.inputs{
+   display: flex;
+   flex-direction: column;
+}
+
+.titles{
+   display: flex;
+   flex-direction: column;
+   gap: 20px;
+   h3{
+      // font-size: 16px;
+      font-size: clamp(0.75rem, 0.675rem + 0.33vw, 1rem);
+      font-weight: 400;
+   }
+
+   p{
+      font-size: 12px;
+    font-family: "PT Mono", serif;
+   }
+}
+
+.saveButton{
+   padding: 10px;
+   border: 2px solid black;
+   border-radius: 15px;
+   max-width: 180px;
+   font-family: "PT Mono", serif;
+   background-color: #d2fba4;
+
+   &:active{
+      background-color: #acce87;
+   }
+}

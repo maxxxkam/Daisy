@@ -10,11 +10,13 @@ const Header = () => {
 
   return (
     <>
-      <section>
+      <header>
         <div className="container">
           <div className={s.wrapper}>
             <img src="/public/logo.png" alt="Logo" />
-            <button className={s.header_btn}>Join the waitlist</button>
+           <a href="#join">
+           <button className={s.header_btn}>Join the waitlist</button>
+           </a>
 
             <div className={`${s.menu} ${isMenuOpen ? s.active : ''}`}>
             <button className={s.header_btn}>Join the waitlist</button>
@@ -29,7 +31,7 @@ const Header = () => {
             </div>
           </div>
         </div>
-      </section>
+      </header>
     </>
   );
 };

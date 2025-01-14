@@ -6,6 +6,8 @@ import Transform from './components/Transform/Transform'
 import Midnight from './components/Midnight/Midnight'
 import Catalog from './components/Catalog/Catalog'
 import Snail from './components/Snail/Snail'
+import Login from './components/Login/Login'
+import Footer from './components/Footer/Footer'
 
 const App = () => {
   return (
@@ -16,6 +18,8 @@ const App = () => {
     <Midnight/>
     <Catalog/>
     <Snail/>
+    <Login/>
+    <Footer/>
     </>
   )
 }

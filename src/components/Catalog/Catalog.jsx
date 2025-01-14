@@ -4,7 +4,7 @@ import s from './Catalog.module.scss'
 const Catalog = () => {
   return (
     <>
-    <section>
+    <section className={s.catalog} >
       <div className="container">
          <div className={s.wrapper}>
             <div className={`${s.card} ${s.card_1}`}>

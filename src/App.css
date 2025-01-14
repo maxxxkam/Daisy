@@ -5,13 +5,21 @@
     /* font-family: "PT Mono", serif; */
 }
 
+html{
+  scroll-behavior: smooth;
+}
+
 .container{
   max-width: 1600px;
   margin: 0 auto;
   padding: 0 15px;
 }
 
-
+section{
+  position: relative;
+  margin-top: -50px;
+  padding-bottom: 45px;
+}
 
 body{
   background-image: url(/public/body-bg.png);
