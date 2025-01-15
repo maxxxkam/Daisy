@@ -1,5 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import s from './Footer.module.scss';
+import { Link } from 'react-router-dom';
+
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 const Footer = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -9,7 +13,6 @@ const Footer = () => {
   });
 
   useEffect(() => {
-    // Загрузка сохраненных настроек из localStorage при монтировании компонента
     const savedPreferences = JSON.parse(localStorage.getItem('cookiePreferences'));
     if (savedPreferences) {
       setPreferences(savedPreferences);
@@ -29,29 +32,39 @@ const Footer = () => {
 
   const savePreferences = () => {
     localStorage.setItem('cookiePreferences', JSON.stringify(preferences));
-    toggleModal(); // Закрыть модальное окно
+    toggleModal();
   };
+
+    useEffect(() => {
+          AOS.init({
+            duration: 500,
+            once: true,
+          });
+        }, []);
+  
 
   return (
     <>
       <footer>
         <div className="container">
           <div className={s.wrapper}>
-            <div className={s.card1}>
+            <div className={s.card1} data-aos="fade-down" data-aos-delay="200" >
               <img src="/daisy-logo-white.png" alt="" />
               <button onClick={toggleModal}>Cookie Preferences</button>
             </div>
-            <div className={s.card2}>
+            <div className={s.card2} data-aos="fade-down" data-aos-delay="400" >
               <a href="">info@hidaisy.ai</a>
             </div>
-            <div className={s.card3}>
+            <div className={s.card3} data-aos="fade-down" data-aos-delay="600" >
               <div className={s.images}>
                 <img src="/profile-img1.png" alt="" />
                 <img src="/profile-img2.png" alt="" />
                 <img src="/profile-img3.png" alt="" />
                 <img src="/profile-img4.png" alt="" />
               </div>
-              <a href="">Privacy Policy</a>
+              <Link to={'/policy'} >
+              Privacy Policy
+              </Link>
             </div>
           </div>
         </div>

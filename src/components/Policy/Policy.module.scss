@@ -1,0 +1,38 @@
+.policy{
+  
+}
+
+.wrapper{
+   margin-top: 100px;
+   max-width: 700px;
+   width: 80%;
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   margin: 100px auto;
+   gap: 30px;
+   p{
+      font-family: "PT Mono", serif;
+   }
+   h1{
+      // font-size: 40px;
+      font-size: clamp(1.125rem, 0.711rem + 1.79vw, 2.5rem);
+   }
+}
+
+.title{
+   display: flex;
+   flex-direction: column;
+   gap: 30px;
+   p,b,a{
+    font-family: "PT Mono", serif;
+    color: #000;
+   }
+   
+   ul{
+      padding-left: 35px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+   }
+}

@@ -1,7 +1,7 @@
 .wrapper{
    display: grid;
    grid-template-columns: repeat(2, 1fr);
-   padding: 60px 60px 0;
+   padding: 40px 40px 0;
    gap: 40px;
    @media (max-width:950px) {
       grid-template-columns: 1fr;
@@ -44,6 +44,7 @@
    flex-direction: column;
    gap: 30px;
    margin-bottom: 40px;
+   transition: 3s;
 }
 
 .card{
@@ -51,14 +52,14 @@
    padding: 40px;
    border-radius: 15px;
    max-width: 550px;
-   
+   transition: 3s !important;
    p{
       // font-size: 23px;
       font-size: clamp(0.688rem, 0.415rem + 1.36vw, 1.438rem);
       font-weight: 600;
     font-family: 'PT Mono', serif;
    }
-   transition: 3s;
+  
    &:hover{
       background-color: rgba(254, 254, 152, 0.801);
    }

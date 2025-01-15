@@ -14,10 +14,16 @@
    justify-content: center;
    flex-direction: column;
    margin-top: 40px;
+}
+
+.title{
    h1{
       // font-size: 47px;
       font-size: clamp(1.125rem, 0.58rem + 2.36vw, 2.938rem);
+      font-weight: 500;
+    max-width: 900px;
    }
+   text-align: center;
 }
 
 .wrap{

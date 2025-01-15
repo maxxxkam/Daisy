@@ -1,4 +1,6 @@
-
+.hero{
+  margin-top: 40px;
+}
 .title {
   h1 {
     // font-size: 50px;
@@ -77,7 +79,7 @@
       font-weight: 600;
       transition: 0.5s;
       &:hover{
-         rotate: 0deg;
+         rotate: 0deg !important;
       }
       position: absolute;
       top: 0;
