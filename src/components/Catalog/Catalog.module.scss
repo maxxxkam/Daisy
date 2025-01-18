@@ -6,8 +6,8 @@
    // display: grid;
    // grid-template-columns: 2fr 3fr;
    display: flex;
-   justify-content: center;
-   gap: 40px;
+   justify-content: space-between;
+   // gap: 30px;
    margin-top: 40px;
    @media (max-width:800px) {
       flex-direction: column;
@@ -50,4 +50,25 @@
    max-width: 700px;
    background-color: #ccf5ff;
 
+}
+
+.card_3{
+   max-width: 500px;
+   background-color: #fff;
+}
+
+.card_4{
+   max-width: 600px;
+   background-color: #fac8c8;
+
+}
+
+.swipeWrap{
+   display: flex;
+   gap: 20px;
+
+   .SwiperSlide{
+      display: flex;
+      gap: 20px;
+   }
 }
