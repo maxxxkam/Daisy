@@ -38,7 +38,7 @@ const Header = () => {
       <div className="container">
         <div className={s.wrapper}  >
           <Link to={'/'}>
-          <img src="/public/logo.png" alt="Logo" data-aos="fade-down" data-aos-delay="200" />
+          <img src="/logo.png" alt="Logo" data-aos="fade-down" data-aos-delay="200" />
           </Link>
          <div className={s.btn} data-aos="fade-down" data-aos-delay="400" >
          <Link to="/#join">
