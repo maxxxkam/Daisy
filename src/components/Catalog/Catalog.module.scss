@@ -2,12 +2,13 @@
    margin-top: 0;
 }
 
-.wrapper{
+.mySwiper{
    // display: grid;
    // grid-template-columns: 2fr 3fr;
    display: flex;
    justify-content: space-between;
    // gap: 30px;
+   padding: 20px;
    margin-top: 40px;
    @media (max-width:800px) {
       flex-direction: column;
@@ -42,33 +43,28 @@
 }
 
 .card_1{
-   max-width: 500px;
    background-color: #e7ccff;
 }
 
 .card_2{
-   max-width: 700px;
    background-color: #ccf5ff;
-
 }
 
 .card_3{
-   max-width: 500px;
    background-color: #fff;
 }
 
 .card_4{
-   max-width: 600px;
    background-color: #fac8c8;
-
 }
 
-.swipeWrap{
+.mySwiper{
    display: flex;
-   gap: 20px;
+   // flex-direction: column;
 
    .SwiperSlide{
       display: flex;
       gap: 20px;
    }
 }
+
