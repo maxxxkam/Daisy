@@ -1,150 +1,179 @@
-footer{
-   background-color: #000;
-   margin-top: -15px;
+.footer{
+    margin-top: 40px;
+    padding: 30px;
+    background-color: #fff;
+    position: relative;
 }
 
 .wrapper{
-   display: flex;
-   justify-content: space-between;
-   padding: 40px;
-   @media (max-width:760px) {
-      flex-direction: column;
-      gap: 30px;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-   }
+    display: grid;
+    grid-template-columns: 4fr 1fr 1fr 1fr;
+    gap: 60px;
+    @media (max-width:700px) {
+        grid-template-columns: repeat(3, 1fr);
+    }
+    @media (max-width:500px) {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    @media (max-width:400px) {
+        grid-template-columns: 1fr;
+    }
 }
 
-.card1{
-   display: flex;
-   flex-direction: column;
-   gap: 15px;
-   button{
-      margin-top: auto;
-      padding: 10px;
-      font-size: 12px;
-   }
-   img{
-      max-width: 45px;
-      width: 100%;
-   }
+.box1{
+    max-width: 400px;
+    gap: 20px;
+    display: flex;
+    flex-direction: column;
+    a{
+        text-decoration: none;
+    }
 }
 
-.card2{
-   a{
-      color: #fff;
-      font-weight: 500;
-   }
-}
+.box{
+    display: flex;
+    flex-direction: column;
+    gap: 23px;
 
-.card3{
-   img{
-      max-width: 45px;
-      width: 100%;
-   }
+    h2{
+        color: #000;
+        font-weight: 400;
+    }
+    a{
+        opacity: 50%;
+        cursor: pointer;
+        color: #000;
+        text-decoration: none;
+        &:hover{
+            text-decoration-line: underline;
+        }
+    }
+
    
-   a{
-      color: #fff;
+}
 
-   }
+.openModal{
+    background-color: #fff;
+    position: absolute;
+}
 
-   display: flex;
-   flex-direction: column;
-   gap: 20px;
+.line{
+    margin-top: 20px;
+    width: 100%;
+    height: 1px;
+    background-color: rgba(128, 128, 128, 0.617);
+    margin: 0 auto;
+    display: block;
+    margin: 30px;
 
+}
+
+.wrap{
+    margin-top: 30px;
+    display: flex;
+    justify-content: space-between;
+    @media (max-width:700px) {
+       flex-direction: column;
+       gap: 40px;
+       text-align: center;
+    }
 }
 
 .modalOverlay {
-   position: fixed;
-   top: 0;
-   left: 0;
-   width: 100%;
-   height: 100%;
-   background: rgba(0, 0, 0, 0.5);
-   display: flex;
-   justify-content: center;
-   align-items: center;
-   z-index: 1000;
-
- }
- 
- .modal {
-   background: #f4f3e8;
-   padding: 20px;
-   border-radius: 8px;
-   position: relative;
-   width: 90%;
-   max-width: 500px;
-   gap: 20px;
-   display: flex;
-   padding: 20px;
-   flex-direction: column;
-   h2{
-      font-weight: 500;
-   }
- }
- 
- .closeButton {
-   position: absolute;
-   top: 10px;
-   right: 10px;
-   background: none;
-   border: none;
-   font-size: 1.5rem;
-   cursor: pointer;
- }
- 
-
- .cookieSection{
-   display: flex;
-   flex-direction: column;
-   gap: 20px;
- }
-
- .cookieCategory{
-   display: flex;
-   span{
-      font-size: 12px;
-      font-family: "PT Mono", serif;
-   }
- }
-
-.inputs{
-   display: flex;
-   flex-direction: column;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+  }
+  
+  .modalContent {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    max-width: 700px;
+    width: 90%;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+  }
+  
+  .closeButton {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: none;
+    border: none;
+    font-size: 18px;
+    cursor: pointer;
+    color: #000;
+  }
+  
+  .partners {
+    display: flex;
+    // flex-direction: column;
+    gap: 40px;
+    align-items: center;
+    justify-content: center;
+    margin-top: 30px;
+    flex-wrap: wrap;
+  }
+  
+  .partnerItem {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 10px;
+    a{
+        text-decoration: none;
+        color: #000;
+        &:hover{
+            text-decoration: underline;
+            color: gray;
+        }
+    }
+  }
+  
+  .partnerItem img {
+    width: 50px;
+    height: 50px;
+    object-fit: contain;
+  }
+  
+.formGroup{
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    input{
+        border-radius: 10px;
+        padding: 12px;
+    }
 }
 
-.titles{
-   display: flex;
-   flex-direction: column;
-   gap: 20px;
-   h3{
-      // font-size: 16px;
-      font-size: clamp(0.75rem, 0.675rem + 0.33vw, 1rem);
-      font-weight: 400;
-   }
+.modalContent_2 {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    max-width: 700px;
+    width: 90%;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
 
-   p{
-      font-size: 12px;
-    font-family: "PT Mono", serif;
-   }
+.formGroupse{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 }
 
-.saveButton{
-   padding: 10px;
-   border: 2px solid black;
-   border-radius: 15px;
-   max-width: 180px;
-   font-family: "PT Mono", serif;
-   background-color: #d2fba4;
-
-   &:active{
-      background-color: #acce87;
-   }
-}
-
-.images{
-   display: flex;
-   gap: 8px;
-}

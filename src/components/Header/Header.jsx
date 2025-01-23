@@ -1,30 +1,67 @@
-import React, { useState, useEffect } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import React, { useEffect, useState, useRef, useMemo } from 'react';
 import s from './Header.module.scss';
+import SectionTitle from '../SectionTitle/SectionTitle';
+import { Link } from 'react-router-dom';
+import carData from '/public/products.json';
 
-import AOS from "aos";
-import "aos/dist/aos.css";
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 const Header = () => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const location = useLocation();
+  const [showDropdown, setShowDropdown] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [showResults, setShowResults] = useState(false);
+  const dropdownRef = useRef(null);
 
-  const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen);
+  const toggleDropdown = () => {
+    setShowDropdown((prev) => !prev);
+  };
+
+ 
+  const [debouncedQuery, setDebouncedQuery] = useState(searchQuery);
+  useEffect(() => {
+    const handler = setTimeout(() => setDebouncedQuery(searchQuery), 300);
+    return () => clearTimeout(handler);
+  }, [searchQuery]);
+
+
+  const filteredCars = useMemo(() => {
+    if (!debouncedQuery) return carData;
+
+    const query = debouncedQuery.toLowerCase();
+    return carData.filter((car) =>
+      Object.values(car).some((value) =>
+        String(value).toLowerCase().includes(query)
+      )
+    );
+  }, [debouncedQuery]);
+
+  const handleSearch = (event) => {
+    setSearchQuery(event.target.value);
+  };
+
+  const handleInputClick = () => {
+    setShowResults(true);
+  };
+
+  const handleBlur = () => {
+    setTimeout(() => setShowResults(false), 100);
   };
 
 
   useEffect(() => {
-    if (location.hash === '#join') {
-      const section = document.querySelector(location.hash);
-      if (section) {
-        section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    const handleClickOutside = (event) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setShowDropdown(false);
       }
-    }
-  }, [location]);
+    };
 
-  
- 
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
   useEffect(() => {
     AOS.init({
       duration: 500,
@@ -32,31 +69,80 @@ const Header = () => {
     });
   }, []);
 
-
   return (
-    <header>
+    <header id="featured" className={s.header}>
       <div className="container">
-        <div className={s.wrapper}  >
-          <Link to={'/'}>
-          <img src="/logo.png" alt="Logo" data-aos="fade-down" data-aos-delay="200" />
-          </Link>
-         <div className={s.btn} data-aos="fade-down" data-aos-delay="400" >
-         <Link to="/#join">
-            <button className={s.header_btn}>Join the waitlist</button>
-          </Link>
-         </div>
-
-          <div className={`${s.menu} ${isMenuOpen ? s.active : ''}`}  >
-            <button className={s.header_btn}>Join the waitlist</button>
+        <div className={s.wrapper}>
+          <div className={s.box} data-aos="fade-down" data-aos-delay="200">
+            <Link className={s.logo} to={'/'}>
+              <SectionTitle>MORANT</SectionTitle>
+            </Link>
+            <input
+              placeholder="Search something"
+              className={s.search}
+              type="text"
+              value={searchQuery}
+              onChange={handleSearch}
+              onClick={handleInputClick}
+              onBlur={handleBlur}
+              onFocus={() => setShowResults(true)}
+              data-aos="fade-down"
+              data-aos-delay="400"
+            />
           </div>
+          <div className={s.menu}>
+            {[
+              { to: '/favorite', src: '/Like-img.svg', delay: 600 },
+              {
+                src: '/Notification-img.svg',
+                delay: 800,
+                onClick: toggleDropdown,
+              },
+              { to: '/setingsPage', src: '/Settings-img.svg', delay: 1000 },
+              { src: '/Profile-img.svg', delay: 1200 },
+            ].map((item, index) => (
+              <Link
+                key={index}
+                to={item.to || '#'}
+                onClick={item.onClick}
+                data-aos="fade-down"
+                data-aos-delay={item.delay}
+              >
+                <img src={item.src} alt="" />
+              </Link>
+            ))}
 
-          <div
-            className={`${s.burger} ${isMenuOpen ? s.open : ''}`}
-            onClick={toggleMenu}
-          >
-            <span></span>
-            <span></span>
+            {showDropdown && (
+              <div ref={dropdownRef} className={s.dropdown}>
+                <p>У вас новое сообщение</p>
+                <p>Ваша бронь подтверждена</p>
+                <p>Запланировано техническое обслуживание</p>
+                <Link onClick={toggleDropdown} to={'/notification'}>
+                  Посмотреть все уведомления
+                </Link>
+              </div>
+            )}
           </div>
+          <div className={`${s.searchResults} ${showResults ? s.show : ''}`}>
+  {filteredCars.length > 0 ? (
+    filteredCars.map((car, index) => (
+      <div
+        key={car.id || index} 
+        className={s.carCard}
+        data-aos="fade-down"
+        data-aos-delay={200 + index * 100}
+      >
+        <Link to={`/carPage/${car.id}`}>
+          <img src={car.image} alt={car.name} />
+          <h3>{car.name}</h3>
+          <p>{car.price}</p>
+        </Link>
+      </div>
+    ))
+  ) : (
+    <p>По вашему запросу ничего не найдено</p>
+  )}
+</div>
         </div>
       </div>
     </header>

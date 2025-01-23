@@ -1,37 +1,57 @@
-import React, { useEffect } from 'react'
-import s from './Hero.module.scss'
+import React, { useEffect } from "react";
+import s from "./Hero.module.scss";
+import Btn from "../Btn/Btn";
+import Btn2 from "../Btn2/Btn2";
+import { Link } from "react-router-dom";
 
 import AOS from "aos";
-import "aos/dist/aos.css";
+import "aos/dist/aos.css"; 
 
 const Hero = () => {
-  useEffect(() => {
-      AOS.init({
-        duration: 500,
-        once: true,
-      });
-    }, []);
+
+   useEffect(() => {
+         AOS.init({ 
+           duration: 500,
+            once: true
+   
+          }); 
+       }, []);
+
   return (
     <>
-    <section className={s.hero} >
-      <div className="container">
-         <div className={s.wrapper}>
-            <div className={s.title} data-aos="zoom-in" data-aos-delay="200" >
-            <h1>Give your ideas a glow up. Meet your new <span>AI creative collaborator.</span></h1>
-            <p>Capture, organize, and elevate your ideas across work, life, and leisure.</p>
+      <section  className={s.hero}>
+        <div className="container">
+          <div className={s.wrapper}>
+            <div className={s.card} data-aos="flip-left">
+              <div>
+                <h2>The Best Platform for Car Rental</h2>
+                <p>
+                  Ease of doing a car rental safely and reliably. Of course at a
+                  low price.
+                </p>
+                <Link to={'/carPage/1'} >
+                <Btn>Rental  car</Btn>
+                </Link>
+              </div>
             </div>
-
-            <div className={s.image} data-aos="fade-down" data-aos-delay="400" >
-               <div>Help me promote our hew neighbouthood book club</div>
-               <div>Create blog post outline about dopamine decorating</div>
-               <img src="/hero-gif.png" alt="" />
-               <div >Help me create a tax season content calendar</div>
+            <div className={s.card} data-aos="flip-right" >
+              <div>
+                <h2>Easy way to rent a car at a low price </h2>
+                <p>
+                  Providing cheap car rental services and safe and comfortable
+                  facilities.
+                </p>
+                
+               <Link to={'/carPage/2'} >
+               <Btn2>Rental car</Btn2>
+               </Link>
+              </div>
             </div>
-         </div>
-      </div>
-    </section>
+          </div>
+        </div>
+      </section>
     </>
-  )
-}
+  );
+};
 
-export default Hero
+export default Hero;

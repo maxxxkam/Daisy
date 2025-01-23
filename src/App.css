@@ -1,42 +1,22 @@
 *{
   margin: 0;
   padding: 0;
-  font-family: "Libre Baskerville", serif;
-    /* font-family: "PT Mono", serif; */
-}
-
-html{
+  font-family: "Open Sans", sans-serif;
   scroll-behavior: smooth;
 }
 
 .container{
-  max-width: 1600px;
-  margin: 0 auto;
+  margin: 15px auto;
   padding: 0 15px;
-}
-
-section{
-  position: relative;
-  margin-top: -50px;
-  padding-bottom: 45px;
+  max-width: 1200px;
 }
 
 body{
-  background-image: url(/public/body-bg.png);
-  /* background-size: cover; */
-  background-position: center;
-}
-
-.swiper {
-  padding: 0 60px 0;
- width: 80%;
- position: static !important;
-}
-
-.swiper-button-prev{
-  left: -30px;
-}
-
-.swiper-button-next{
-  right: -30px;  
+  background-color: #F6F7F9;
+  button{
+    cursor: pointer;
+  }
+  p{
+    margin-bottom: 0;
+  }
 }

@@ -1,37 +1,37 @@
-import React from 'react';
-import './App.css';
-import Header from './components/Header/Header';
-import Hero from './components/Hero/Hero';
-import Transform from './components/Transform/Transform';
-import Midnight from './components/Midnight/Midnight';
-import Catalog from './components/Catalog/Catalog';
-import Snail from './components/Snail/Snail';
-import Login from './components/Login/Login';
-import Footer from './components/Footer/Footer';
-import { Route, Routes } from 'react-router-dom';
-import Home from './Pages/Home';
-import Policy from './components/Policy/Policy';
-import ScrollToTop from './components/ScrollToTop/ScrollToTop';
+import React from "react";
+import "./App.css";
+import Header from "./components/Header/Header";
+import Footer from "./components/Footer/Footer";
+import { Route, Routes } from "react-router-dom";
+import Home from "./pages/Home";
+import CarPage from "./pages/CarPage";
+import Filter from "./pages/Filter";
+import ScrollToTop from "./components/ScrollToTop/ScrollToTop";
+import Favorite from "./components/Favorite/Favorite";
+import Notification from "./components/Notification/Notification";
+import How from "./components/How/How";
+import Events from "./components/Events/Events";
+import OrderPage from "./pages/OrderPage"; 
+import SetingsPage from "./pages/SetingsPage";
+import AdminPage from "./pages/AdminPage";
+
 
 const App = () => {
   return (
     <>
-      {/* <Hero/>
-    <Transform/>
-    <Midnight/>
-    <Catalog/>
-    <Snail/>
-    <Login/> */}
-    <ScrollToTop/>
+      <ScrollToTop />
       <Header />
       <Routes>
-        <Route path='/' element={<Home/>} />
-        <Route path='/transform' element={<Transform/>} />
-        <Route path='/midnight' element={<Midnight/>} />
-        <Route path='/catalog' element={<Catalog/>} />
-        <Route path='/snail' element={<Snail/>} />
-        <Route path='/login' element={<Login/>} />
-        <Route path='/policy' element={<Policy/>} />
+        <Route path="/" element={<Home />} />
+        <Route path="/carPage/:id" element={<CarPage />} />
+        <Route path="/filter" element={<Filter />} />
+        <Route  path="/order/:id" element={<OrderPage />} /> 
+        <Route path="/favorite" element={<Favorite />} />
+        <Route path="/notification" element={<Notification />} />
+        <Route path="/howpage" element={<How />} />
+        <Route path="/eventsPage" element={<Events />} />
+        <Route path="/setingsPage" element={<SetingsPage />} /> 
+        <Route path="/admin" element={<AdminPage/>} />
       </Routes>
       <Footer />
     </>

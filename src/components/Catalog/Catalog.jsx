@@ -1,121 +1,83 @@
-import React, { useEffect, useRef } from "react";
-import s from "./Catalog.module.scss";
+import React, { useState, useMemo } from 'react';
+import Products from '../../db.json';
+import s from './Catalog.module.scss';
+import CarList from '../CarList/CarList';
+import FilterBox from '../FilterBox/FilterBox';
 
-import { Swiper, SwiperSlide } from "swiper/react";
-
-import "swiper/css";
-import "swiper/css/scrollbar";
-import "swiper/css/navigation";
-import "swiper/css/pagination";
-
-import AOS from "aos";
-import "aos/dist/aos.css";
-import { Keyboard, Navigation, Scrollbar, Pagination } from "swiper/modules";
+const ITEMS_PER_PAGE = 6;
 
 const Catalog = () => {
-  useEffect(() => {
-    AOS.init({
-      duration: 1000,
-      once: true,
+  const [selectedCategories, setSelectedCategories] = useState([]);
+  const [selectedSeats, setSelectedSeats] = useState([]);
+  const [maxPrice, setMaxPrice] = useState(100);
+  const [currentPage, setCurrentPage] = useState(1);
+
+  const categories = ['Sport', 'SUV', 'Sedan', 'Hatchback'];
+  const seatOptions = ['2 Person', '4 Person', '6 Person', '8 Person'];
+
+  const filteredProducts = useMemo(() => {
+    return Products.cars.filter((product) => {
+      const productPrice = parseFloat(product.price.replace('$', ''));
+      const productCategory = product.category.trim();
+      const productSeats = product.seats.trim();
+
+      return (
+        (selectedCategories.length === 0 ||
+          selectedCategories.includes(productCategory)) &&
+        (selectedSeats.length === 0 || selectedSeats.includes(productSeats)) &&
+        productPrice <= maxPrice
+      );
     });
-  }, []);
+  }, [selectedCategories, selectedSeats, maxPrice]);
+
+
+  const paginatedProducts = useMemo(() => {
+    const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
+    return filteredProducts.slice(startIndex, startIndex + ITEMS_PER_PAGE);
+  }, [filteredProducts, currentPage]);
+
+
+  const totalPages = Math.ceil(filteredProducts.length / ITEMS_PER_PAGE);
+
+  const toggleCategory = (category) => {
+    setSelectedCategories((prev) =>
+      prev.includes(category)
+        ? prev.filter((c) => c !== category)
+        : [...prev, category]
+    );
+    setCurrentPage(1);
+  };
+
+  const toggleSeats = (seat) => {
+    setSelectedSeats((prev) =>
+      prev.includes(seat) ? prev.filter((s) => s !== seat) : [...prev, seat]
+    );
+    setCurrentPage(1);
+  };
 
   return (
-    <>
-      <section className={s.catalog}>
-        <div className="container">
-        <Swiper
-  spaceBetween={60}
-  slidesPerView={1}
-  slidesPerGroup={1}
-  loop={true}
-  grabCursor={false}
-  keyboard={{
-    enabled: true,
-  }}
-  breakpoints={{
-    // Для ширины экрана меньше или равной 800px
-   
-    // Для ширины экрана больше 800px
-    801: {
-      slidesPerView: 2,
-      slidesPerGroup: 2,
-    },
-  }}
-  scrollbar={false}
-  navigation={true}
-  pagination={{
-    clickable: true,
-  }}
-  modules={[Keyboard, Scrollbar, Navigation, Pagination]}
-  className={s.mySwiper}
->
-
-            <SwiperSlide>
-              <div
-                className={`${s.card} ${s.card_1}`}
-                data-aos="fade-down"
-                data-aos-delay="200"
-              >
-                <h1> Get unblocked with a little help from AI </h1>
-                <img src="/chat-img.png" alt="" />
-                <p>
-                  Brainstorm ideas, create action plans, generate to-do lists
-                  and more. Organize your thoughts and keep your projects moving
-                  forward with Daisy.
-                </p>
-              </div>
-            </SwiperSlide>
-            <SwiperSlide>
-              <div
-                className={`${s.card} ${s.card_2}`}
-                data-aos="fade-down"
-                data-aos-delay="400"
-              >
-                <h1>Save inspiration anytime, anywhere</h1>
-                <img src="/catalog-img.png" alt="" />
-                <p>
-                  Access all your inspiration in one place. Curate your personal
-                  creative library — images, videos, websites, and GIFS, at your
-                  fingertips. Drag and drop elements onto your canvas and watch
-                  your vision unfold.
-                </p>
-              </div>
-            </SwiperSlide>
-            <SwiperSlide>
-              <div
-                className={`${s.card} ${s.card_3}`}
-                data-aos="fade-down"
-                data-aos-delay="600"
-              >
-                <h1>Achieve More Together with AI</h1>
-                <img src="/catalog-img3.jpg" alt="" />
-                <p>
-                  Collaborate seamlessly with your team to develop
-                  groundbreaking AI solutions. Share ideas, refine strategies,
-                  and turn innovation into impactful results.
-                </p>
-              </div>
-            </SwiperSlide>
-            <SwiperSlide>
-              <div
-                className={`${s.card} ${s.card_4}`}
-                data-aos="fade-down"
-                data-aos-delay="800"
-              >
-                <h1>Shaping the Future of Technology</h1>
-                <img src="/catalog-gif.gif" alt="" />
-                <p>
-                  Explore the limitless potential of abstract technologies. From
-                  dynamic designs to futuristic concepts, unleash creativity and
-                  push boundaries into the unknown.
-                </p>
-              </div>
-            </SwiperSlide>
-          </Swiper>
+    <section>
+      <div className="container">
+        <div className={s.wrapper}>
+          <FilterBox
+            categories={categories}
+            selectedCategories={selectedCategories}
+            toggleCategory={toggleCategory}
+            seatOptions={seatOptions}
+            selectedSeats={selectedSeats}
+            toggleSeats={toggleSeats}
+            maxPrice={maxPrice}
+            setMaxPrice={setMaxPrice}
+          />
+          <CarList
+            filteredProducts={paginatedProducts}
+            currentPage={currentPage}
+            totalPages={totalPages}
+            setCurrentPage={setCurrentPage}
+          />
         </div>
-      </section>
-    </>
+      </div>
+    </section>
   );
 };
 
